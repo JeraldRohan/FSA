@@ -74,6 +74,9 @@ function App() {
         <div className="logo">
           <img src={logo} alt="Logo" />
         </div>
+        <div>
+          
+        </div>
         <nav className="list">
           <ul>
             <li>
