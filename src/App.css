@@ -1,0 +1,140 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+/* Dark Mode Styles */
+:root {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --button-background: #1f1f1f;
+  --button-text-color: #e0e0e0;
+  --input-background: #333;
+  --input-border-color: #555;
+  --modal-background: #1e1e1e;
+  --modal-border: #333;
+}
+
+/* Apply dark mode styles */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+button {
+  background-color: var(--button-background);
+  color: var(--button-text-color);
+}
+
+input, select {
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border-color);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #000000, #04619F, #000000);
+}
+
+.DropDown .btn:focus, .DropDown ul:focus {
+  outline: none;
+}
+
+.header {
+  height: 80px;
+  width: 100%;
+  background: radial-gradient(to bottom, #00264d 0%, #003366 22.9%, #004080 76.7%, #1f1f40 100.2%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.list {
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+
+ul {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+ul li {
+  list-style-type: none;
+  margin: 20px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1px;
+}
+
+.logo img {
+  height: 70px;
+  width: 330px;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  background: none;
+  font-size: 24px;
+  color: #e0e0e0; /* Bright color for buttons */
+}
+
+ul li {
+  color: #ffffff;
+}
+
+a {
+  color: #e0e0e0; /* Bright white for links */
+  text-decoration: none;
+}
+
+.dropdown {
+  position: absolute;
+  top: 70px; /* adjust this value to match the height of the button */
+  right: 0;
+  background-color: #0e0d0d;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: block;
+  z-index: 1000;
+}
+
+.dropdown li {
+  list-style-type: none;
+  margin: 10px;
+}
+
+.dropdown li a {
+  color: #e0e0e0; /* Bright color for dropdown links */
+}
+
+.dropdown li a:hover {
+  background-color: transparent !important;
+  color: #337ab7; /* Maintain hover color */
+}
+
+ul li:hover {
+  background-color: transparent !important;
+}
+
+.btn:hover + .dropdown {
+  display: block;
+}
+
+.dropdown:hover {
+  display: block;
+}
+
+.btn:hover {
+  outline: none;
+}
