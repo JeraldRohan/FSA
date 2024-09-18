@@ -135,6 +135,10 @@ function FacultyDetails({ addTask, tasks, updateTaskStatus, deleteTask }) {
       priority
     };
 
+    // Store the new task in local storage
+    const existingTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    localStorage.setItem('tasks', JSON.stringify([...existingTasks, newTask]));
+
     addTask(newTask);
     setLocalTasks((prevTasks) => [...prevTasks, newTask]);
     setIsModalOpen(false);
