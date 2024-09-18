@@ -48,6 +48,7 @@ function App() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    localStorage.removeItem('isLoggedIn'); // Clear the login state from local storage
   };
 
   useEffect(() => {
@@ -68,8 +69,17 @@ function App() {
     };
   }, [showDropdown]);
 
+  // Check local storage for login status
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    setIsLoggedIn(loggedIn);
+  }, []);
+
   if (!isLoggedIn) {
-    return <SignIn onLogin={setIsLoggedIn} />;
+    return <SignIn onLogin={() => {
+      setIsLoggedIn(true);
+      localStorage.setItem('isLoggedIn', 'true'); // Set login state in local storage
+    }} />;
   }
 
   return (
