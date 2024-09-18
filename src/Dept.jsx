@@ -28,14 +28,14 @@ function DepartmentBox({ id, name, image }) {
   }, [image]);
 
   return (
-    <div className='Box1'>
+    <Link to={`/department/${id}`} className='Box1'> {/* Wrapped the entire Box1 in Link */}
       <div className='Box'>
         <img src={imageSrc} alt={name} className='deptimg' />
       </div>
       <div className='Name'>
-        <Link to={`/department/${id}`}><h3>{name}</h3></Link>
+        <h3>{name}</h3>
       </div>
-    </div>
+    </Link>
   );
 }
 

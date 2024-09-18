@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import DeptData from './Dept.json';
 import facultyData from './DeptFaculties.json';
+import './Dept.css';
 
 const importImages = import.meta.glob('./assets/Individuals/*/*.{png,jpg,jpeg,svg}');
 const images = {};
@@ -45,21 +46,27 @@ function DeptFaculties() {
       </div>
       <div className='Entire'>
         <div className="container">
-          {facultyList.map((faculty, index) => ( // Added index as fallback
-            <div key={faculty.id || index} className="Box"> {/* Use faculty.id or index as unique key */}
+          {facultyList.map((faculty, index) => (
+            <Link 
+              to={`/faculty/${faculty.name}`} 
+              key={faculty.id || index} 
+              className="Box"
+            >
               {faculty.image ? (
-                <img src={faculty.image} alt={faculty.name || 'Faculty Image'} /> 
+                <img src={faculty.image} alt={faculty.name || 'Faculty Image'} />
               ) : (
                 <p>Image not available</p>
               )}
               <div className="Name">
-                <Link to={`/faculty/${faculty.name}`}>{faculty.name}</Link>
+                <p>{faculty.name}</p>
                 {faculty.designation && <p>{faculty.designation}</p>}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
+      <br/>
+      <br/>
     </div>
   );
 }

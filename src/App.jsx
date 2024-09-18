@@ -42,6 +42,10 @@ function App() {
     setShowDropdown(!showDropdown);
   };
 
+  const handleDepartmentClick = () => {
+    setShowDropdown(false); // Close the dropdown after clicking on a department
+  };
+
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
@@ -74,9 +78,6 @@ function App() {
         <div className="logo">
           <img src={logo} alt="Logo" />
         </div>
-        <div>
-          
-        </div>
         <nav className="list">
           <ul>
             <li>
@@ -85,7 +86,7 @@ function App() {
             <li>
               <Link className="btn" to="/dashboard">Dashboard</Link>
             </li>
-            <li ref={dropdownRef} className='DropDown'>
+            <li ref={dropdownRef} className="DropDown">
               <button className="btn" onClick={handleFindClick} aria-haspopup="true" aria-expanded={showDropdown}>
                 Find
               </button>
@@ -93,7 +94,9 @@ function App() {
                 <ul className="dropdown" role="menu">
                   {departmentsData.map((dept) => (
                     <li key={dept.id}>
-                      <Link to={`/department/${dept.id}`} role="menuitem">{dept.name}</Link>
+                      <Link to={`/department/${dept.id}`} role="menuitem" onClick={handleDepartmentClick}>
+                        {dept.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
