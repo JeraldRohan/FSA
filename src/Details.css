@@ -97,7 +97,7 @@
   }
   
   .filter-buttons button.suspended {
-    background-color: yellow; /* Yellow background for Suspended */
+    background-color: rgb(255, 238, 0); /* Yellow background for Suspended */
     color: black;  /* Black text for contrast */
   }
   
