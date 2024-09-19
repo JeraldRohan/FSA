@@ -58,7 +58,7 @@ function FacultyDetails({ addTask, tasks, updateTaskStatus, deleteTask }) {
     const updateTaskStatuses = () => {
       const now = new Date();
       const currentTotalMinutes = timeToMinutes(now.getHours() % 12 || 12, now.getMinutes(), now.getHours() >= 12 ? 'PM' : 'AM');
-
+             
       localTasks.forEach(task => {
         const [endHour, endMinute] = task.endTime.split(' ')[0].split(':');
         const endAmpm = task.endTime.split(' ')[1];
@@ -134,10 +134,6 @@ function FacultyDetails({ addTask, tasks, updateTaskStatus, deleteTask }) {
       status: "Active",
       priority
     };
-
-    // Store the new task in local storage
-    const existingTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    localStorage.setItem('tasks', JSON.stringify([...existingTasks, newTask]));
 
     addTask(newTask);
     setLocalTasks((prevTasks) => [...prevTasks, newTask]);

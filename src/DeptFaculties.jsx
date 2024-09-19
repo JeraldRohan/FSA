@@ -8,32 +8,42 @@ const importImages = import.meta.glob('./assets/Individuals/*/*.{png,jpg,jpeg,sv
 const images = {};
 
 // Preload images
-for (const path in importImages) {
-  importImages[path]().then((module) => {
-    const imageName = path.split('/').pop();
-    images[imageName] = module.default;
-  });
-}
+const preloadImages = async () => {
+  await Promise.all(
+    Object.keys(importImages).map(async (path) => {
+      const module = await importImages[path]();
+      const imageName = path.split('/').pop();
+      images[imageName] = module.default;
+    })
+  );
+};
 
 function DeptFaculties() {
   const { id } = useParams();
   const [facultyList, setFacultyList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = 'Faculty-Logger-Faculties'; // Set the title here
-  }, []);
+    const loadImages = async () => {
+      await preloadImages();
+      const departmentId = id;
+      const facultyDataForDept = facultyData[departmentId] || [];
 
-  useEffect(() => {
-    const departmentId = id;
-    const facultyDataForDept = facultyData[departmentId] || [];
+      const mappedFacultyData = facultyDataForDept.map(faculty => ({
+        ...faculty,
+        image: images[faculty.image] || null
+      }));
 
-    const mappedFacultyData = facultyDataForDept.map(faculty => ({
-      ...faculty,
-      image: images[faculty.image] || null
-    }));
-
-    setFacultyList(mappedFacultyData);
+      setFacultyList(mappedFacultyData);
+      setLoading(false);
+    };
+    loadImages();
   }, [id]);
+
+  if (loading) {
+    return <p>Loading images...</p>;
+  }
 
   if (facultyList.length === 0) {
     return <p>No faculty found for this department</p>;

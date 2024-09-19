@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Details.css';
 
-function Details({ updateTaskStatus }) {
+function Details({ tasks, updateTaskStatus }) {
   const [filter, setFilter] = useState('All');
-  const [updatedTasks, setUpdatedTasks] = useState([]);
+  const [updatedTasks, setUpdatedTasks] = useState(tasks);
 
   useEffect(() => {
     document.title = 'Faculty-Logger-Dashboard';
-
-    // Retrieve tasks from local storage
-    const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    setUpdatedTasks(storedTasks);
 
     const updateTaskStatuses = () => {
       const now = new Date();
