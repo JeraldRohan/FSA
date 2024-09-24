@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Signin.css';
 import signInBackground from './assets/signin.jpg'; // Background image
 import boxLogo from './assets/boxlogo.png'; // Logo image
-import { auth, provider, signInWithPopup } from './firebase'; // Import Firebase functions
 
 function SignIn({ onLogin }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
 
-  const handleGoogleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      console.log("User Info:", result.user);
-      onLogin(true); // Call the onLogin callback to indicate successful login
+  useEffect(() => {
+    document.title = 'Faculty-Logger-SignIn'; // Set the title here
+  }, []);
+
+  const handleLogin = (event) => {
+    // Prevent form default submission behavior
+    event.preventDefault();
+
+    // Convert email to lowercase for case-insensitive comparison
+    const normalizedEmail = email.toLowerCase();
+
+    if (normalizedEmail === 'jeraldrohan.cb22@bitsathy.ac.in' && password === '1234') {
+      onLogin(true);
       setLoginError('');
-    } catch (error) {
-      console.error("Error Code:", error.code);
-      console.error("Error Message:", error.message);
-      setLoginError("Failed to sign in with Google.");
+    } else {
+      setLoginError('Invalid email or password.');
     }
   };
 
@@ -36,11 +43,33 @@ function SignIn({ onLogin }) {
     >
       <div className="login-container">
         <img src={boxLogo} alt="Logo" className="box-logo" />
-        <h2>Sign In</h2>
-        <button className="google-signin-button" onClick={handleGoogleLogin}>
-          Sign in with Google
-        </button>
-        {loginError && <p className="error">{loginError}</p>}
+        <form onSubmit={handleLogin}>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Email"
+            required
+            autoComplete="off"  
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+                    />
+          <br/>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Password"
+              required
+            autoComplete="off"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          
+          />
+          <br/>
+          <button type="submit">Sign In</button>
+          {loginError && <p className="error">{loginError}</p>}
+        </form>
       </div>
     </div>
   );

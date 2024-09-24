@@ -43,7 +43,7 @@
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .imgBorder {
@@ -53,7 +53,6 @@
   padding: 5px;
   display: inline-block;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .imgIn:hover {
@@ -61,10 +60,6 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-.imgBorder:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
-}
 
 .FacDetails {
   display: flex;
@@ -166,12 +161,12 @@ tr:hover {
   padding: 0;
   margin: 0;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .delete-button img {
   width: 26px;
   height: 26px;
-  margin-bottom: 10px;
 }
 
 .delete-button img:hover {

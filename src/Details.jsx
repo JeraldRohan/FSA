@@ -3,6 +3,7 @@ import './Details.css';
 
 function Details({ tasks, updateTaskStatus }) {
   const [filter, setFilter] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [updatedTasks, setUpdatedTasks] = useState(tasks);
 
   useEffect(() => {
@@ -34,8 +35,10 @@ function Details({ tasks, updateTaskStatus }) {
   }, [updateTaskStatus]);
 
   const filteredTasks = updatedTasks.filter(task => {
-    if (filter === 'All') return true;
-    return task.status === filter;
+    if (filter !== 'All' && task.status !== filter) {
+      return false;
+    }
+    return task.name.toLowerCase().includes(searchQuery.toLowerCase());
   });
 
   return (
@@ -47,6 +50,11 @@ function Details({ tasks, updateTaskStatus }) {
           <button className="active" onClick={() => setFilter('Active')}>Active</button>
           <button className="completed" onClick={() => setFilter('Completed')}>Completed</button>
           <button className="suspended" onClick={() => setFilter('Suspended')}>Suspended</button>
+          <input
+            placeholder='   Search Faculty....'
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+          />
         </div>
       </div>
       <div className='Details'>

@@ -108,4 +108,12 @@
   .filter-buttons button:focus {
     outline: none;  /* Remove focus outline */
   }
-  
+  /* Details.css */
+  .filter-buttons input {
+    padding: 8px 12px; /* Add horizontal padding for space on both sides */
+    border: 1px solid #eefffd; /* Border styling */
+    border-radius: 4px; /* Rounded corners */
+    width: 200px; /* Width of the search bar */
+    transition: border-color 0.3s; /* Smooth border color transition */
+    font-weight: lighter;
+  }

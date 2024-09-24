@@ -138,3 +138,21 @@ ul li:hover {
 .btn:hover {
   outline: none;
 }
+.dropdown-content {
+  position: absolute;
+  background-color: rgb(9, 7, 7);
+  padding: 10px;
+  width: 250px; /* Increased width */
+  right: 70px;
+  top: 90px;  /* Adjust to move slightly left */
+  z-index: 1;   /* Ensure it appears above other elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional for styling */
+}
+
+.search-bar {
+  width: 100%;
+  padding: 8px; /* Increased padding for better UX */
+  box-sizing: border-box;
+  border-radius: 4px; /* Optional for rounded corners */
+  color: white;
+}
